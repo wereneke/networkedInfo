@@ -18,6 +18,7 @@ public class ServerWorker implements Runnable {
             DataOutputStream output = new DataOutputStream(clientSocket.getOutputStream());
 
             output.writeUTF("information about cpu etc.");
+
             output.flush();
 
             input.close();
