@@ -8,6 +8,7 @@ public class ServerWorker implements Runnable {
     private Socket clientSocket;
 
     public ServerWorker(Socket clientSocket) {
+
         this.clientSocket = clientSocket;
     }
 
@@ -17,12 +18,10 @@ public class ServerWorker implements Runnable {
             DataInputStream input = new DataInputStream(clientSocket.getInputStream());
             DataOutputStream output = new DataOutputStream(clientSocket.getOutputStream());
 
-            output.writeUTF("information about cpu etc.");
-
-            output.flush();
-
-            input.close();
-            output.close();
+                while (input.readUTF().equals("start")) {
+                    output.writeUTF("info info info");
+                    output.flush();
+                }
 
         }catch (IOException e) {
             e.printStackTrace();

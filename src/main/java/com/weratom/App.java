@@ -3,16 +3,22 @@ package com.weratom;
 import com.weratom.modes.Client;
 import com.weratom.modes.server.Server;
 
-import java.util.Scanner;
-
 public class App
 {
+    public static void main(String[] args) {
 
-    private static Scanner in = new Scanner(System.in);
-    public static void main( String[] args ) {
+        int port = 9999;
 
-
-
-
+        if (args[0].equals("server")){
+            Thread server = new Thread(new Server());
+            server.start();
+        }
+        else if (args[0].equals("client")) {
+            Client client = new Client("localhost");
+            while (true) {
+                client.askServerForInfo();
+                client.askServerForInfo();
+            }
+        }
     }
 }

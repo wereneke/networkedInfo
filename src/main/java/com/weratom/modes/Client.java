@@ -27,12 +27,26 @@ public class Client {
     public void askServerForInfo() {
 
         try {
-            outputStream.writeUTF("give me info about you");
+            outputStream.writeUTF("start");
             outputStream.flush();
             System.out.println(inputStream.readUTF());
 
         } catch (IOException e) {
             e.printStackTrace();
+            closeConnection();
+        }
+    }
+
+    public void stopaskingServer() {
+
+        try {
+            outputStream.writeUTF("stop");
+            outputStream.flush();
+            closeConnection();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            closeConnection();
         }
     }
 

@@ -1,13 +1,14 @@
-package com.weratom;
+package com.weratom.modes.service;
 
+import java.io.DataOutputStream;
 import java.lang.management.ManagementFactory;
 import java.lang.management.OperatingSystemMXBean;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-public class StatsPrinter implements Runnable{
+public class StatsChecker implements Runnable{
 
-    String response;
+    private String response;
 
     public String getResponse() {
         return response;
