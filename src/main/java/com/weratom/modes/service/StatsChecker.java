@@ -1,6 +1,5 @@
 package com.weratom.modes.service;
 
-import java.io.DataOutputStream;
 import java.lang.management.ManagementFactory;
 import java.lang.management.OperatingSystemMXBean;
 import java.lang.reflect.Method;
@@ -9,12 +8,15 @@ import java.lang.reflect.Modifier;
 public class StatsChecker implements Runnable{
 
     private String response;
+    Thread statsCheckerThread;
 
     public String getResponse() {
         return response;
     }
 
     public void run() {
+
+        statsCheckerThread = Thread.currentThread();
         try {
             while (true) {
                 checkUsage();

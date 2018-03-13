@@ -14,11 +14,13 @@ public class Server implements Runnable {
     private ServerSocket serverSocket;
     private boolean isStopped = false;
     private ExecutorService threadPool = Executors.newFixedThreadPool(4);
-    private static final Thread stats = new Thread(new StatsChecker());
+    private StatsChecker stats = new StatsChecker();
 
     @Override
     public void run() {
 
+        Thread statsThread = new Thread(stats);
+        statsThread.start();
         openServerSocket();
 
         while (!isStopped) {
@@ -32,11 +34,10 @@ public class Server implements Runnable {
                 }
                 throw new RuntimeException("Error accepting client connection", e);
             }
-            this.threadPool.execute(new ServerWorker(clientSocket));
+            this.threadPool.execute(new ServerWorker(clientSocket, stats));
         }
         this.threadPool.shutdown();
         this.stop();
-        stats.interrupt();
     }
 
     public synchronized void stop(){
