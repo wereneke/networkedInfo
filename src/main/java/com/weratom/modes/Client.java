@@ -37,7 +37,7 @@ public class Client {
                 outputStream.writeUTF("start");
                 outputStream.flush();
                 System.out.println(inputStream.readUTF());
-                Thread.sleep(500);
+                Thread.sleep(2000);
             } catch (IOException e) {
                 e.printStackTrace();
                 closeConnection();
