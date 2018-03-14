@@ -16,9 +16,9 @@ public class App
         }
         else if (mode.equals("client")) {
             Client client = new Client("localhost");
+            Thread clientThread = new Thread(client);
+            clientThread.start();
 
-            client.askServerForInfo();
-            client.stopAskingServer();
         }
     }
 }

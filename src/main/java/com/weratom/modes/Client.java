@@ -5,17 +5,15 @@ import com.weratom.modes.service.Listener;
 import java.io.*;
 import java.net.Socket;
 
-public class Client {
+public class Client implements Runnable {
 
     private Socket socket;
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
     private Thread listener;
-
+    private Thread clientThread;
 
     public Client(String ip) {
-        this.listener = new Thread(new Listener(this));
-        listener.start();
         connectSocket(ip);
     }
 
@@ -24,24 +22,27 @@ public class Client {
             this.socket = new Socket(ip, 9999);
             this.inputStream = new DataInputStream(socket.getInputStream());
             this.outputStream = new DataOutputStream(socket.getOutputStream());
-
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void askServerForInfo() {
+    public void run() {
+
+        this.listener = new Thread(new Listener(Thread.currentThread()));
+        listener.start();
 
         while (listener.isAlive()) {
             try {
                 outputStream.writeUTF("start");
                 outputStream.flush();
                 System.out.println(inputStream.readUTF());
-                Thread.sleep(500);
+                Thread.sleep(5000);
             } catch (IOException e) {
                 e.printStackTrace();
                 closeConnection();
             } catch (InterruptedException e) {
+                stopAskingServer();
                 System.out.printf("Connection closed");
             }
         }
