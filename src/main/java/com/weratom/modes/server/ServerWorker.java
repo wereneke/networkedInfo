@@ -27,6 +27,8 @@ public class ServerWorker implements Runnable {
                     output.flush();
                 }
 
+                Thread.currentThread().interrupt();
+
         }catch (IOException e) {
             e.printStackTrace();
         }
