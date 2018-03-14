@@ -37,7 +37,7 @@ public class Client {
         }
     }
 
-    public void stopaskingServer() {
+    public void stopAskingServer() {
 
         try {
             outputStream.writeUTF("stop");

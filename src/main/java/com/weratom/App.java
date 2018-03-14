@@ -15,10 +15,8 @@ public class App
         }
         else if (args[0].equals("client")) {
             Client client = new Client("localhost");
-            for (int i=0; i<5; i++) {
-                client.askServerForInfo();
-            }
-            client.stopaskingServer();
+            client.askServerForInfo();
+            client.stopAskingServer();
         }
     }
 }
