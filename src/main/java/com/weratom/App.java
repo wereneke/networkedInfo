@@ -14,12 +14,11 @@ public class App
             Thread server = new Thread(new Server());
             server.start();
         }
-        else if (args[0].equals("client")) {
+        else if (mode.equals("client")) {
             Client client = new Client("localhost");
 
-                client.askServerForInfo();
-
-            client.stopaskingServer();
+            client.askServerForInfo();
+            client.stopAskingServer();
         }
     }
 }
