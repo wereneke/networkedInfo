@@ -12,7 +12,6 @@ public class Listener implements Runnable {
         this.client = client;
     }
 
-
     public void run() {
 
         Scanner scanner = new Scanner(System.in);

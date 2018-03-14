@@ -13,7 +13,6 @@ public class Client implements Runnable {
     private Thread listener;
     private Thread clientThread;
 
-
     public Client(String ip) {
         connectSocket(ip);
     }
@@ -23,7 +22,6 @@ public class Client implements Runnable {
             this.socket = new Socket(ip, 9999);
             this.inputStream = new DataInputStream(socket.getInputStream());
             this.outputStream = new DataOutputStream(socket.getOutputStream());
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -44,6 +42,7 @@ public class Client implements Runnable {
                 e.printStackTrace();
                 closeConnection();
             } catch (InterruptedException e) {
+                stopAskingServer();
                 System.out.printf("Connection closed");
             }
         }

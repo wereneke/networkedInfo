@@ -16,7 +16,6 @@ public class App
         else if (args[0].equals("client")) {
             Client client = new Client("localhost");
             client.run();
-//            client.stopAskingServer();
         }
     }
 }
