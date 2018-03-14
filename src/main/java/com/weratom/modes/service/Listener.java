@@ -25,8 +25,6 @@ public class Listener implements Runnable {
                 listening = false;
                 Thread.currentThread().interrupt();
             }
-//                Thread.sleep(1000);
         }
-
     }
 }
