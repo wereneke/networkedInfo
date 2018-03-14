@@ -6,16 +6,12 @@ import java.util.Scanner;
 
 public class Listener implements Runnable {
 
-//    private Thread printingThread;
+    private Thread client;
 
-//    public Listener(Thread tPr) {
-//        this.printingThread = tPr;
-//    }
-    Client client;
-
-    public Listener(Client client) {
+    public Listener(Thread client) {
         this.client = client;
     }
+
 
     public void run() {
 
@@ -25,7 +21,7 @@ public class Listener implements Runnable {
 
             if (scanner.hasNextLine()) {
                 System.out.println("Enter Key pressed.");
-                client.stopAskingServer();
+                client.interrupt();
                 scanner.close();
                 listening = false;
                 Thread.currentThread().interrupt();

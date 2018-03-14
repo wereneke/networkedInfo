@@ -15,8 +15,8 @@ public class App
         }
         else if (args[0].equals("client")) {
             Client client = new Client("localhost");
-            client.askServerForInfo();
-            client.stopAskingServer();
+            client.run();
+//            client.stopAskingServer();
         }
     }
 }
