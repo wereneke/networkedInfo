@@ -1,5 +1,7 @@
 package com.weratom.modes;
 
+import com.weratom.modes.service.Listener;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -8,8 +10,12 @@ public class Client {
     private Socket socket;
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
+    private Thread listener;
+
 
     public Client(String ip) {
+        this.listener = new Thread(new Listener(this));
+        listener.start();
         connectSocket(ip);
     }
 
@@ -26,14 +32,18 @@ public class Client {
 
     public void askServerForInfo() {
 
-        try {
-            outputStream.writeUTF("start");
-            outputStream.flush();
-            System.out.println(inputStream.readUTF());
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            closeConnection();
+        while (listener.isAlive()) {
+            try {
+                outputStream.writeUTF("start");
+                outputStream.flush();
+                System.out.println(inputStream.readUTF());
+                Thread.sleep(500);
+            } catch (IOException e) {
+                e.printStackTrace();
+                closeConnection();
+            } catch (InterruptedException e) {
+                System.out.printf("Connection closed");
+            }
         }
     }
 
