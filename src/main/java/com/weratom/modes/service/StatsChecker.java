@@ -28,7 +28,7 @@ public class StatsChecker implements Runnable{
     }
 
     private void checkUsage() {
-        String currentStats = "";
+        StringBuilder currentStats = new StringBuilder();
         OperatingSystemMXBean operatingSystemMXBean = ManagementFactory.getOperatingSystemMXBean();
         for (Method method : operatingSystemMXBean.getClass().getDeclaredMethods()) {
             method.setAccessible(true);
@@ -40,9 +40,12 @@ public class StatsChecker implements Runnable{
                 } catch (Exception e) {
                     value = e;
                 }
-                currentStats += method.getName() + " = " + value + "\n";
+                currentStats.append(method.getName());
+                currentStats.append(" = ");
+                currentStats.append(value);
+                currentStats.append("\n");
             }
         }
-        response = currentStats;
+        response = currentStats.toString();
     }
 }

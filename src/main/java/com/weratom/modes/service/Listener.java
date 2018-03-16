@@ -1,6 +1,5 @@
 package com.weratom.modes.service;
 
-import com.weratom.modes.Client;
 
 import java.util.Scanner;
 
