@@ -11,7 +11,6 @@ public class Client implements Runnable {
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
     private Thread listener;
-    private Thread clientThread;
 
     public Client(String ip) {
         connectSocket(ip);
