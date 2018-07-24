@@ -9,7 +9,6 @@ public class App
     public static void main(String[] args) {
 
         String mode = args[0];
-        int port = 9999;
 
         if (mode.equals("server")){
             Thread server = new Thread(new Server());

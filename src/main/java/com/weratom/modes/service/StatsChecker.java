@@ -22,8 +22,6 @@ public class StatsChecker implements Runnable{
             while (true) {
                 checkUsage();
                 Thread.sleep(responsivenessSpeed);
-//                System.out.print("\033[H\033[2J");
-//                System.out.flush();
             }
         } catch (Exception e) {}
     }
