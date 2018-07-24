@@ -9,6 +9,7 @@ public class StatsChecker implements Runnable{
 
     private String response;
     Thread statsCheckerThread;
+    private int responsivenessSpeed = 5000;
 
     public String getResponse() {
         return response;
@@ -20,7 +21,7 @@ public class StatsChecker implements Runnable{
         try {
             while (true) {
                 checkUsage();
-                Thread.sleep(500);
+                Thread.sleep(responsivenessSpeed);
 //                System.out.print("\033[H\033[2J");
 //                System.out.flush();
             }
@@ -47,5 +48,13 @@ public class StatsChecker implements Runnable{
             }
         }
         response = currentStats.toString();
+    }
+
+    public void setResponsivenessSpeed(int val) {
+        this.responsivenessSpeed = val;
+    }
+
+    public int getResponsivenessSpeed() {
+        return this.responsivenessSpeed;
     }
 }
