@@ -16,3 +16,4 @@ and then in another console
 ```
 java -jar info-1.0-SNAPSHOT.jar client
 ```
+to stop asking the server for information press enter key two times in client console
