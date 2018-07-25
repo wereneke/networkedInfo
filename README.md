@@ -5,6 +5,7 @@ To run App you need JDK in version 1.8, Git and Maven.
 
 on unix run
 ```
+git clone https://github.com/wereneke/networkedInfo.git
 cd networkedInfo
 mvn package
 ```
