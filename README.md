@@ -17,6 +17,6 @@ and then in another console
 ```
 java -jar info-1.0-SNAPSHOT.jar client
 ```
-to stop asking the server for information press enter key two times in client console
-remember to stop all the clients before closing server
+to stop asking the server for information press enter key two times in client console,
+remember to stop all the clients before closing server,
 to stop server type CTRL+C in console where server is running
